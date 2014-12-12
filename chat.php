@@ -16,8 +16,13 @@ and open the template in the editor.
             <div style="border: 1px solid black;height: 90%;">
                 Hier wird der Chatverlauf angezigt
             </div>
-            <div style="border: 1px solid black;height: 10%;">
-                Hier kannst du deine Chatnachricht eintippen und senden
+            <div style="padding: 10px 5px 0px 5px;border: 1px solid black;height: 10%;">
+                
+                <form action="send_message.php" method="post">
+                    <input style="width:200px; height: 20px" name="post">
+                    <input style="height:25px;" type="submit" value="Senden">
+                </form>
+                
             </div>
         </div>
         <?php
