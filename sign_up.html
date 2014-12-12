@@ -6,11 +6,28 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Registrieren</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div>TODO write content</div>
+        <h1>Registrierung</h1>
+        
+        <form action="sign_up.php" method="post">
+            <fieldset>
+                <legend>Bitte wähle Username und Passwort:</legend>
+                <p>
+                    <label>Username</label>
+                    <input name="username">
+                </p>
+                <p>
+                    <label>Passwort</label>
+                    <input type="password" name="password">
+                </p>
+                <p><input type="submit"></p>
+            </fieldset>
+        </form>
+        
+        <a href="index.php">Zurück zur Startseite</a>
     </body>
 </html>
