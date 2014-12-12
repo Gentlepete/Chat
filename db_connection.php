@@ -5,7 +5,7 @@ class connection
     private $user = "root";
     private $host = "localhost";
     private $con;
-    private $db = "test";
+    private $db = "chat";
     
     function __construct($host = NULL, $user = NULL) 
     {
@@ -33,7 +33,8 @@ class connection
     
     function query($sql)
     {
-        return mysqli_query($this->con, $sql);
+        var_dump(mysqli_query($this->con, $sql));
+        //return mysqli_query($this->con, $sql);
     }
     
     function close()
