@@ -10,6 +10,7 @@ and open the template in the editor.
         <title>Chat</title>
     </head>
     <body>
+        <?php var_dump($_POST); ?>
         <h1>Dein persönlicher Chat mit [platzhalter]</h1>
         
         <div style="border: 1px solid black;width: 300px;height: 500px;margin-left: 100px;">

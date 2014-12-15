@@ -42,7 +42,7 @@ class connection
         $arr = array();
         while ($dsatz = mysqli_fetch_assoc($res))
         {
-            $arr = $dsatz;
+            $arr[] = $dsatz;
         }
         //return mysqli_fetch_assoc($res);
         return $arr;

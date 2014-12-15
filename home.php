@@ -6,6 +6,8 @@ and open the template in the editor.
 -->
 <?php
 session_start();
+
+require_once 'queries.inc.php';
 ?>
 <html>
     <head>
@@ -30,8 +32,18 @@ session_start();
         
         <!-- Div mit allen auf der Seite registrierten Usern als Links -->
         <div style="margin-right: 20px;float:left;border: 1px solid black;width: 150px;height: 500px;">
+            <form action="chat.php" method="post">    
+         <?php
+                
+         foreach($users as $user)
+         {
+             echo "<button type='submit' value='".$user['id']."' name='user_id'>".$user['name']."</button><br>";
+             //echo "<p><a href='chat.php' id='".$user['id']."'>".$user['name']."</a></p>";
+         }
+         
+         ?>
+            </form>
             
-          Hier werden Die User aufgelistet
           
         </div>
         
@@ -42,7 +54,7 @@ session_start();
             <div style="border: 1px solid black;height: 12%;">
                 
                 <form action="post.php" method="post">
-                    <input style="width:300px; height: 50px" name="post">
+                    <input type="text" style="width:300px; height: 50px" name="post">
                     <input style="height:40px;" type="submit" value="Posten">
                 </form>
                 
@@ -51,7 +63,19 @@ session_start();
             <!-- ContainerDiv für Postings -->
             <div style="border: 1px solid black;height: 87%;overflow: auto;">
                 
-                Hier werden die geposteten Beiträge angezeigt
+                <?php
+                
+                foreach ($posts as $post)
+                {
+                    echo "<p>";
+                    echo $post['name']." ".$post['timestamp']."<br>";
+                    echo $post['message'];
+                    echo "</p>";
+                } 
+                
+                            
+                
+                ?>
                 
             </div>  
             
