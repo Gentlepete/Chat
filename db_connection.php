@@ -39,7 +39,13 @@ class connection
     
     function get_query_data($res)
     {
-        return mysqli_fetch_assoc($res);
+        $arr = array();
+        while ($dsatz = mysqli_fetch_assoc($res))
+        {
+            $arr = $dsatz;
+        }
+        //return mysqli_fetch_assoc($res);
+        return $arr;
     }
     
     function close()

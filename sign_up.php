@@ -13,8 +13,8 @@ try
 {
     if ($con->query($sql))
     {
-        echo "<p>Benutzer erfolgreich erstellt.</p>";
-        echo "<a href='index.php'>zum Login</a>";
+        $_SESSION['message'] = "Benutzer erfolgreich erstellt.";
+        header("Location: index.php");
     }
     else
     {
@@ -24,7 +24,6 @@ try
 } catch (Exception $e) {
     $_SESSION['error'] = $e->getMessage();
     header ("Location: index.php");
-    //echo "<a href='sign_up.php'>zum Signup</a>";
 }
 $con->close();
 

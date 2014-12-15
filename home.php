@@ -11,6 +11,7 @@ session_start();
     <head>
         <meta charset="UTF-8">
         <title>Home</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
         <?php
@@ -18,9 +19,10 @@ session_start();
         {
             header("Location: index.php");
         }
-        else
+        if(isset($_SESSION['message']))
         {
-            echo $_SESSION['current_user_id'];
+            echo "<p class='message'>".$_SESSION['message']."</p>";
+            unset($_SESSION['message']);
         }
         ?>
         <a href="logout.php">Logout</a>

@@ -6,7 +6,6 @@ and open the template in the editor.
 -->
 <?php
 session_start();
-//var_dump($_SESSION);
 ?>
 <html>
     <head>
@@ -34,15 +33,20 @@ session_start();
         </form>
         
         <fieldset>
-            <legend>Noch keinen Account? Regisrtiere dich hier</legend>
+            <legend>Noch keinen Account? Registriere dich hier</legend>
             <a href="sign_up.html">Registrieren</a>
         </fieldset>
         <?php
 
         if(isset($_SESSION['error']))
         {
-            echo "<p>".$_SESSION['error']."</p>";
+            echo "<p class='error'>".$_SESSION['error']."</p>";
             unset($_SESSION['error']);
+        }
+        if(isset($_SESSION['message']))
+        {
+            echo "<p class='message'>".$_SESSION['message']."</p>";
+            unset($_SESSION['message']);
         }
         ?>
     </body>
