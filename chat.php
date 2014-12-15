@@ -4,6 +4,25 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
+<?php
+
+session_start();
+require_once 'db_connection.php';
+$con = new connection();
+$con->connect();
+$cu_id = $_SESSION['current_user_id'];
+
+$chat_partner_id = $_POST['user_id'];
+
+$messagesql = "SELECT * FROM message WHERE send_user_id = $cu_id AND recieve_user_id = $chat_partner_id OR send_user_id = $chat_partner_id AND recieve_user_id = $cu_id ";
+$message_result = $con->query($messagesql);
+
+$messages = $con->get_query_data($message_result);
+
+$con->close();
+
+?>
+
 <html>
     <head>
         <meta charset="UTF-8">
@@ -15,7 +34,14 @@ and open the template in the editor.
         
         <div style="border: 1px solid black;width: 300px;height: 500px;margin-left: 100px;">
             <div style="border: 1px solid black;height: 90%;">
-                Hier wird der Chatverlauf angezigt
+               <?php
+               
+               foreach($messages as $message)
+               {
+                   echo $message."<br>";
+               }
+               
+               ?>
             </div>
             <div style="padding: 10px 5px 0px 5px;border: 1px solid black;height: 10%;">
                 

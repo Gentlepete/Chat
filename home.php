@@ -16,6 +16,7 @@ require_once 'queries.inc.php';
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
+        
         <?php
         if(!isset($_SESSION['current_user_id']))
         {
@@ -27,22 +28,24 @@ require_once 'queries.inc.php';
             unset($_SESSION['message']);
         }
         ?>
+        
         <a href="logout.php">Logout</a>
         <h1>Deine Home Seite</h1>
         
         <!-- Div mit allen auf der Seite registrierten Usern als Links -->
         <div style="margin-right: 20px;float:left;border: 1px solid black;width: 150px;height: 500px;">
-            <form action="chat.php" method="post">    
-         <?php
-                
-         foreach($users as $user)
-         {
-             echo "<button type='submit' value='".$user['id']."' name='user_id'>".$user['name']."</button><br>";
-             //echo "<p><a href='chat.php' id='".$user['id']."'>".$user['name']."</a></p>";
-         }
-         
-         ?>
-            </form>
+            
+        <form action="chat.php" method="post">    
+            <?php
+
+            foreach($users as $user)
+            {
+                echo "<button type='submit' value='".$user['id']."' name='user_id'>".$user['name']."</button><br>";
+                //echo "<p><a href='chat.php' id='".$user['id']."'>".$user['name']."</a></p>";
+            }
+
+            ?>
+         </form>
             
           
         </div>
