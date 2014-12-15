@@ -2,22 +2,22 @@
 
 class connection
 {
-    private $user = "root";
+    private $db_user = "root";
     private $host = "localhost";
     private $con;
     private $db = "chat";
     
-    function __construct($host = NULL, $user = NULL) 
-    {
-        $this->host = $host;
-        $this->user = $user;
-    }
+//    function __construct($host = NULL, $db_user = NULL) 
+//    {
+//        $this->host = $host;
+//        $this->db_user = $db_user;
+//    }
     
     function connect()
     { 
         try
         {
-            if ($this->con = mysqli_connect($this->host, $this->user))
+            if ($this->con = mysqli_connect($this->host, $this->db_user))
             {
                 mysqli_select_db($this->con, $this->db);
             }
@@ -33,8 +33,13 @@ class connection
     
     function query($sql)
     {
-        var_dump(mysqli_query($this->con, $sql));
-        //return mysqli_query($this->con, $sql);
+        //var_dump(mysqli_query($this->con, $sql));
+        return mysqli_query($this->con, $sql);
+    }
+    
+    function get_query_data($res)
+    {
+        return mysqli_fetch_assoc($res);
     }
     
     function close()
