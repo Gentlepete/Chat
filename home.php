@@ -18,8 +18,12 @@ session_start();
         {
             header("Location: index.php");
         }
+        else
+        {
+            echo $_SESSION['current_user_id'];
+        }
         ?>
-        <a href="logout.php">Lougout</a>
+        <a href="logout.php">Logout</a>
         <h1>Deine Home Seite</h1>
         
         <!-- Div mit allen auf der Seite registrierten Usern als Links -->

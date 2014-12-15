@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 <?php
 session_start();
-var_dump($_SESSION);
+//var_dump($_SESSION);
 ?>
 <html>
     <head>
@@ -15,20 +15,20 @@ var_dump($_SESSION);
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
-        <h1>Ein kleiner, einfach Chat</h1>
+        <h1>Ein kleiner, einfacher Chat</h1>
         
-        <form action="login.php" mehod="post">
+        <form action="login.php" method="post">
             <fieldset>
                 <legend>Gib deinen Usernamen und dein Passwort ein:</legend>
                 <p>
                     <label>Username </label>
-                    <input name="username">
+                    <input type="text" name="username">
                 </p>
                 <p>
                     <label>Passwort </label>
                     <input type="password" name="password">
                 </p>
-                <p><input type="submit"></p>
+                <p><button type="submit" name="btn_send">Einloggen</button></p>
             </fieldset>
                 
         </form>
@@ -38,7 +38,7 @@ var_dump($_SESSION);
             <a href="sign_up.html">Registrieren</a>
         </fieldset>
         <?php
-        //var_dump($_POST);
+
         if(isset($_SESSION['error']))
         {
             echo "<p>".$_SESSION['error']."</p>";
