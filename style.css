@@ -8,3 +8,13 @@ p.message {
     color: green;
 }
 
+.btn_user {
+    //display: list-item;
+    border: 1px solid grey;
+    width: 100%;
+}
+
+.btn_user:hover {
+    background-color: grey;
+}
+

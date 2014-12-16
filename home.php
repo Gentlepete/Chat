@@ -1,14 +1,23 @@
+<?php
+require_once 'db_connection.php';
+session_start();
+$con = new Db();
+$users = $con->getUsers();
+
+if (isset($_POST['btn_send']))
+{
+    $con->doPost();
+}
+$posts = $con->getPosts();
+$con->close();
+?>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<?php
-session_start();
 
-require_once 'queries.inc.php';
-?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -37,7 +46,9 @@ require_once 'queries.inc.php';
                 
          foreach($users as $user)
          {
-             echo "<button type='submit' value='".$user['id']."' name='user_id'>".$user['name']."</button><br>";
+             if ($user['id'] != $_SESSION['current_user_id'])
+                echo "<button class='btn_user' type='submit' value='".$user['id']."' name='user_id'>".$user['name']."</button><br>";
+             
              //echo "<p><a href='chat.php' id='".$user['id']."'>".$user['name']."</a></p>";
          }
          
@@ -53,9 +64,9 @@ require_once 'queries.inc.php';
             <!-- ContainerDiv für PostForm -->
             <div style="border: 1px solid black;height: 12%;">
                 
-                <form action="post.php" method="post">
+                <form action="home.php" method="post">
                     <input type="text" style="width:300px; height: 50px" name="post">
-                    <input style="height:40px;" type="submit" value="Posten">
+                    <button style="height:40px;" type="submit" name="btn_send">Post</button>
                 </form>
                 
             </div>    
@@ -64,15 +75,16 @@ require_once 'queries.inc.php';
             <div style="border: 1px solid black;height: 87%;overflow: auto;">
                 
                 <?php
-                
-                foreach ($posts as $post)
+                if ($posts)
                 {
-                    echo "<p>";
-                    echo $post['name']." ".$post['timestamp']."<br>";
-                    echo $post['message'];
-                    echo "</p>";
-                } 
-                
+                    foreach ($posts as $post)
+                    {
+                        echo "<p>";
+                        echo $post['name']." ".$post['timestamp']."<br>";
+                        echo $post['message'];
+                        echo "</p>";
+                    } 
+                }
                             
                 
                 ?>
