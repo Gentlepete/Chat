@@ -2,8 +2,7 @@
 
 session_start();
 require_once 'db_connection.php';
-$con = new connection();
-$con->connect();
+$con = new Db();
 
 $post = filter_input(INPUT_POST, "post", FILTER_SANITIZE_STRING);
 $user_id = $_SESSION['current_user_id'];

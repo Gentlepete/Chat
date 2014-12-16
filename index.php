@@ -34,7 +34,7 @@ session_start();
         
         <fieldset>
             <legend>Noch keinen Account? Registriere dich hier</legend>
-            <a href="sign_up.html">Registrieren</a>
+            <a href="sign_up.php">Registrieren</a>
         </fieldset>
         <?php
 
