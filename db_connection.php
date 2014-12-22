@@ -9,18 +9,16 @@ class Db extends mysqli
     
     public function getPosts()
     {
-        $sql = "SELECT post.message, post.timestamp, user.name FROM post JOIN user ON user.id = post.user_id ORDER BY post.timestamp DESC";
+        $sql = "SELECT post.message, post.timestamp, user.name, user.id FROM post JOIN user ON user.id = post.user_id ORDER BY post.timestamp DESC";
         return $this->getQueryData($this->query($sql));
     }
     
     public function getMessages($user_id)
     {
         $current_user_id = $_SESSION['current_user_id'];
-        $sql = "SELECT message.text, message.timestamp, user.name FROM message JOIN user ON message.send_user_id = user.id OR message.receive_user_id = 'user.id'"
+        $sql = "SELECT message.text, message.timestamp, user.name, message.send_user_id FROM message JOIN user ON message.send_user_id = user.id "
                 . " WHERE  message.send_user_id = '$current_user_id' AND message.receive_user_id = '$user_id'"
                 . " OR message.send_user_id = '$user_id' AND message.receive_user_id = '$current_user_id' ORDER BY message.timestamp";
-         //AND message.receive_user_id = '$user_id' OR message.send_user_id = '$user_id' AND message.receive_user_id = '$current_user_id' 
-                //. "WHERE message.receive_user_id = '$user_id'";
         return $this->getQueryData($this->query($sql));
     }
     
@@ -52,8 +50,6 @@ class Db extends mysqli
         $this->query($sql);
     }
     
-    
-    
     public function getQueryData($sqlQuery)
     {
         $arr = array();
@@ -61,7 +57,6 @@ class Db extends mysqli
         {
             $arr[] = $dsatz;
         }
-        //return mysqli_fetch_assoc($res);
         return $arr;
     }
     
@@ -76,8 +71,6 @@ class Db extends mysqli
         {
             return false;
         }
-        //$res = $this->getQueryData($this->query($sql));
-        //return $res;
     }
     
     public function signUp()
@@ -102,11 +95,9 @@ class Db extends mysqli
             $_SESSION['error'] = "Der User mit dem Namen $name ist bereits vorhanden.";
             header("Location: index.php");
         }
-        //return;
+        return;
     }
 }
-
-//$db = new Db('localhost','root','','firma');
 
 class connection
 {

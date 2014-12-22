@@ -6,6 +6,10 @@ and open the template in the editor.
 -->
 <?php
 session_start();
+if(isset($_SESSION['current_user_id'])){
+    header ("Location: home.php");
+}
+    
 ?>
 <html>
     <head>
@@ -20,14 +24,16 @@ session_start();
             <fieldset>
                 <legend>Gib deinen Usernamen und dein Passwort ein:</legend>
                 <p>
-                    <label>Username </label>
+                    <label>Username</label><br>
                     <input type="text" name="username">
                 </p>
                 <p>
-                    <label>Passwort </label>
+                    <label>Passwort </label><br>
                     <input type="password" name="password">
                 </p>
-                <p><button type="submit" name="btn_send">Einloggen</button></p>
+                <p>
+                    <button type="submit" name="btn_send">Einloggen</button>
+                </p>
             </fieldset>
                 
         </form>
@@ -38,13 +44,11 @@ session_start();
         </fieldset>
         <?php
 
-        if(isset($_SESSION['error']))
-        {
+        if(isset($_SESSION['error'])){
             echo "<p class='error'>".$_SESSION['error']."</p>";
             unset($_SESSION['error']);
         }
-        if(isset($_SESSION['message']))
-        {
+        if(isset($_SESSION['message'])){
             echo "<p class='message'>".$_SESSION['message']."</p>";
             unset($_SESSION['message']);
         }

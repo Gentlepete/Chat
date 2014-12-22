@@ -1,4 +1,7 @@
-
+p {
+    margin: 0;
+    padding: 0;
+}
 
 p.error {
     color: red;
@@ -18,3 +21,29 @@ p.message {
     background-color: grey;
 }
 
+p.chat_message:nth-child(odd) {
+    background-color: red;
+}
+
+p.chat_message:nth-child(even) {
+    background-color: green;
+}
+
+.DateTime {
+    color: grey;
+    font-size: 11px;
+}
+
+.UserName {
+    font-size: 16px;
+}
+
+.UserPost {
+    font-size: 13px;
+    width: 100%;
+}
+
+a {
+    color: blue;
+    text-decoration: none;
+}
